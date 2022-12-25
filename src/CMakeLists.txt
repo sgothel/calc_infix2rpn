@@ -24,7 +24,7 @@ if(FLEX_FOUND)
     FLEX_TARGET(InfixCalcScanner1 infix_calc_scanner1.ll  ${CMAKE_CURRENT_BINARY_DIR}/infix_calc_scanner1.cpp
           COMPILE_FLAGS "--header-file=${CMAKE_CURRENT_BINARY_DIR}/infix_calc_scanner1.hpp" )
     ADD_FLEX_BISON_DEPENDENCY(InfixCalcScanner1 InfixCalcParser)
-    add_library (infix_calc1 SHARED infix_calc.cpp ${BISON_InfixCalcParser_OUTPUTS} ${FLEX_InfixCalcScanner1_OUTPUTS})
+    add_library (infix_calc1 SHARED infix_calc.cpp rpn_calc.cpp ${BISON_InfixCalcParser_OUTPUTS} ${FLEX_InfixCalcScanner1_OUTPUTS})
     target_include_directories(infix_calc1 SYSTEM PRIVATE ${FLEX_INCLUDE_DIRS})
     target_compile_options(infix_calc1 PRIVATE -DSCANNER_FLEX)
     #target_link_libraries (
@@ -52,7 +52,7 @@ if(REflex_FOUND)
     REflex_TARGET(InfixCalcScanner2 infix_calc_scanner2.ll ${CMAKE_CURRENT_BINARY_DIR}/infix_calc_scanner2.cpp 
           COMPILE_FLAGS "--header-file=${CMAKE_CURRENT_BINARY_DIR}/infix_calc_scanner2.hpp" )
     ADD_REFLEX_BISON_DEPENDENCY(InfixCalcScanner2 InfixCalcParser)
-    add_library (infix_calc2 SHARED infix_calc.cpp ${BISON_InfixCalcParser_OUTPUTS} ${REflex_InfixCalcScanner2_OUTPUTS})
+    add_library (infix_calc2 SHARED infix_calc.cpp rpn_calc.cpp ${BISON_InfixCalcParser_OUTPUTS} ${REflex_InfixCalcScanner2_OUTPUTS})
     target_include_directories(infix_calc2 SYSTEM PRIVATE ${REflex_INCLUDE_DIRS})
     target_compile_options(infix_calc2 PRIVATE -fPIC -DSCANNER_REFLEX)
     target_link_options(infix_calc2 PRIVATE -fPIC)
@@ -80,7 +80,7 @@ if(USE_FLEXCPP)
     FLEXCPP_TARGET(InfixCalcScanner3 infix_calc_scanner3.ll  ${CMAKE_CURRENT_BINARY_DIR}/infix_calc_scanner3.cpp
           COMPILE_FLAGS "--class-header=${CMAKE_CURRENT_BINARY_DIR}/infix_calc_scanner3.hpp --implementation-header=${CMAKE_CURRENT_BINARY_DIR}/infix_calc_scanner3i.hpp --namespace=infix_calc_yy --class-name=scanner" )
     ADD_FLEXCPP_BISON_DEPENDENCY(InfixCalcScanner3 InfixCalcParser)
-    add_library (infix_calc3 SHARED infix_calc.cpp ${BISON_InfixCalcParser_OUTPUTS} ${Flexcpp_InfixCalcScanner3_OUTPUTS})
+    add_library (infix_calc3 SHARED infix_calc.cpp rpn_calc.cpp ${BISON_InfixCalcParser_OUTPUTS} ${Flexcpp_InfixCalcScanner3_OUTPUTS})
     target_include_directories(infix_calc3 SYSTEM PRIVATE ${Flexcpp_INCLUDE_DIRS})
     target_compile_options(infix_calc3 PRIVATE -DSCANNER_FLEXCPP)
     set_target_properties(

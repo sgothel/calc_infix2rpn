@@ -69,6 +69,7 @@ blank [ \t\r]
 \(          return infix_calc_yy::parser::make_LPAREN(loc);
 \)          return infix_calc_yy::parser::make_RPAREN(loc);
 
+"abs"       return infix_calc_yy::parser::make_ABS(loc);
 "sin"       return infix_calc_yy::parser::make_SIN(loc);
 "cos"       return infix_calc_yy::parser::make_COS(loc);
 "tan"       return infix_calc_yy::parser::make_TAN(loc);
@@ -93,6 +94,7 @@ blank [ \t\r]
 "+"         return infix_calc_yy::parser::make_ADD(loc);
 \*          return infix_calc_yy::parser::make_MUL(loc);
 \/          return infix_calc_yy::parser::make_DIV(loc);
+\%          return infix_calc_yy::parser::make_MOD(loc);
 
 {id}        return infix_calc_yy::parser::make_IDENTIFIER(yytext, loc);
 
